@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Survivors - Epic Survival Action Game | AIPLC Games</title>
+    <meta name="description" content="Play Monster Survivors, an intense survival action game where you battle waves of monsters. Master weapons, upgrade abilities, and survive the ultimate challenge. Play free online now!">
+    <meta name="keywords" content="monster survivors, survival game, action game, online game, free game, monster battle, survival shooter">
+    <meta name="author" content="AIPLC Games">
+    <meta property="og:title" content="Monster Survivors - Epic Survival Action Game">
+    <meta property="og:description" content="Battle endless waves of monsters in this thrilling survival game. Master weapons, upgrade abilities, and prove your survival skills!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aiplc.xyz/monster-survivors">
+    <meta property="og:site_name" content="AIPLC Games">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Monster Survivors - Epic Survival Action Game">
+    <meta name="twitter:description" content="Battle endless waves of monsters in this thrilling survival game. Play free online now!">
+    
+    <link rel="canonical" href="https://aiplc.xyz/monster-survivors">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #1d1d1f;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #007aff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo::before {
+            content: "🎮";
+            margin-right: 8px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #007aff;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff3b30;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 59, 48, 0.4);
+        }
+        
+        /* Game Container */
+        .game-section {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .game-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .game-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: block;
+        }
+        
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #1d1d1f, #2c2c2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #007aff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Game Info */
+        .game-info {
+            padding: 80px 0;
+            background: #f2f2f7;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card h3 {
+            color: #007aff;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h3::before {
+            content: "⚔️";
+            margin-right: 10px;
+        }
+        
+        .info-card:nth-child(2) h3::before {
+            content: "🛡️";
+        }
+        
+        .info-card:nth-child(3) h3::before {
+            content: "🏆";
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #86868b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* How to Play */
+        .how-to-play {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 30px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-3px);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #007aff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+        
+        .step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+        
+        /* Controls */
+        .controls {
+            padding: 80px 0;
+            background: #1d1d1f;
+            color: white;
+        }
+        
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .control-group h4 {
+            color: #007aff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .control-group h4::before {
+            content: "🖥️";
+            margin-right: 10px;
+        }
+        
+        .control-group:last-child h4::before {
+            content: "📱";
+        }
+        
+        .control-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .control-key {
+            background: #2c2c2e;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-weight: 600;
+        }
+        
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature h4::before {
+            content: "🎯";
+            margin-right: 10px;
+        }
+        
+        .feature:nth-child(2) h4::before {
+            content: "⚡";
+        }
+        
+        .feature:nth-child(3) h4::before {
+            content: "🌟";
+        }
+        
+        .feature:nth-child(4) h4::before {
+            content: "🔥";
+        }
+        
+        /* Footer */
+        footer {
+            background: #1d1d1f;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            color: #007aff;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section a {
+            color: #86868b;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2c2c2e;
+            color: #86868b;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .game-frame {
+                height: 400px;
+            }
+            
+            .info-card, .step {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .game-frame {
+                height: 300px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="https://aiplc.xyz" class="logo">AIPLC Games</a>
+            <ul class="nav-links">
+                <li><a href="#game">Play Now</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how-to-play">How to Play</a></li>
+                <li><a href="#features">Features</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Monster Survivors</h1>
+            <p>Battle endless waves of terrifying monsters in this heart-pounding survival game. Master powerful weapons, unlock devastating abilities, and prove you have what it takes to survive the ultimate challenge!</p>
+            <a href="#game" class="cta-button">Play Now - Free!</a>
+        </div>
+    </section>
+
+    <section id="game" class="game-section">
+        <div class="container">
+            <div class="game-container">
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="loading-spinner"></div>
+                    <span>Loading Monster Survivors...</span>
+                </div>
+                <iframe 
+                    class="game-frame" 
+                    src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html"
+                    title="Monster Survivors Game"
+                    allowfullscreen
+                    onload="hideLoading()">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="game-info">
+        <div class="container">
+            <h2 class="section-title">Epic Survival Action</h2>
+            <p class="section-subtitle">Monster Survivors combines intense action with strategic gameplay. Face hordes of monsters, collect powerful weapons, and upgrade your abilities to become the ultimate survivor.</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Intense Combat</h3>
+                    <p>Experience fast-paced, adrenaline-fueled combat as you face wave after wave of increasingly dangerous monsters. Each enemy type requires different strategies to defeat.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Strategic Upgrades</h3>
+                    <p>Collect experience points and choose from dozens of powerful upgrades. Build the perfect character combination to match your playstyle and overcome any challenge.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Endless Adventure</h3>
+                    <p>With procedurally generated waves and countless upgrade combinations, every playthrough offers a unique and challenging experience that keeps you coming back for more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-play" class="how-to-play">
+        <div class="container">
+            <h2 class="section-title">How to Play</h2>
+            <p class="section-subtitle">Master the basics and become a legendary monster survivor</p>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Move & Survive</h4>
+                    <p>Use WASD keys or touch controls to move your character. Avoid monster attacks while staying in the action to collect experience orbs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Auto-Attack</h4>
+                    <p>Your character automatically attacks nearby enemies. Position yourself strategically to maximize damage while staying safe from harm.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Level Up</h4>
+                    <p>Collect experience orbs from defeated monsters to level up. Each level lets you choose from powerful upgrades and new abilities.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Build Strategy</h4>
+                    <p>Combine weapons, abilities, and passive upgrades to create devastating builds. Experiment with different combinations to find your perfect playstyle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="controls">
+        <div class="container">
+            <h2 class="section-title">Game Controls</h2>
+            <p class="section-subtitle">Master the controls for optimal survival</p>
+            
+            <div class="controls-grid">
+                <div class="control-group">
+                    <h4>PC Controls</h4>
+                    <div class="control-item">
+                        <span>Move</span>
+                        <span class="control-key">WASD</span>
+                    </div>
+                    <div class="control-item">
+                        <span>Alternative Move</span>
+                        <span class="control-key">Arrow Keys</span>
+                    </div>
+                    <div class="control-item">
+                        <span>Pause</span>
+                        <span class="control-key">ESC</span>
+                    </div>
+                    <div class="control-item">
+                        <span>Fullscreen</span>
+                        <span class="control-key">F11</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <h4>Mobile Controls</h4>
+                    <div class="control-item">
+                        <span>Move</span>
+                        <span class="control-key">Touch & Drag</span>
+                    </div>
+                    <div class="control-item">
+                        <span>Menu</span>
+                        <span class="control-key">Tap Menu Button</span>
+                    </div>
+                    <div class="control-item">
+                        <span>Select Upgrade</span>
+                        <span class="control-key">Tap Option</span>
+                    </div>
+                    <div class="control-item">
+                        <span>Auto-Attack</span>
+                        <span class="control-key">Automatic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Game Features</h2>
+            <p class="section-subtitle">Discover what makes Monster Survivors the ultimate survival experience</p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <h4>Multiple Weapons</h4>
+                    <p>Unlock and upgrade dozens of unique weapons, each with distinct attack patterns, damage types, and special abilities. Find your favorite combat style.</p>
+                </div>
+                <div class="feature">
+                    <h4>Power-Up System</h4>
+                    <p>Choose from hundreds of upgrade combinations. Stack effects, multiply damage, and create overpowered builds that can obliterate entire monster hordes.</p>
+                </div>
+                <div class="feature">
+                    <h4>Boss Battles</h4>
+                    <p>Face massive boss monsters with unique attack patterns and devastating abilities. These epic encounters will test your skills and strategy to the limit.</p>
+                </div>
+                <div class="feature">
+                    <h4>Achievement System</h4>
+                    <p>Complete challenging objectives and unlock special rewards. Track your progress and compete with friends to become the ultimate monster survivor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Game</h4>
+                    <a href="#game">Play Monster Survivors</a>
+                    <a href="#how-to-play">How to Play</a>
+                    <a href="#features">Game Features</a>
+                    <a href="#about">About the Game</a>
+                </div>
+                <div class="footer-section">
+                    <h4>AIPLC Games</h4>
+                    <a href="https://aiplc.xyz">Homepage</a>
+                    <a href="https://aiplc.xyz/games">More Games</a>
+                    <a href="https://aiplc.xyz/about">About Us</a>
+                    <a href="https://aiplc.xyz/contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="https://aiplc.xyz/help">Help Center</a>
+                    <a href="https://aiplc.xyz/faq">FAQ</a>
+                    <a href="https://aiplc.xyz/feedback">Feedback</a>
+                    <a href="https://aiplc.xyz/bug-report">Report Bug</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AIPLC Games. All rights reserved. | <a href="https://aiplc.xyz/privacy" style="color: #86868b;">Privacy Policy</a> | <a href="https://aiplc.xyz/terms" style="color: #86868b;">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function hideLoading() {
+            const overlay = document.getElementById('loadingOverlay');
+            if (overlay) {
+                setTimeout(() => {
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add floating animation to hero elements
+            const heroElements = document.querySelectorAll('.hero h1, .hero p, .cta-button');
+            heroElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+                el.style.animation = 'fadeInUp 0.8s ease-out forwards';
+            });
+
+            // Add intersection observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe cards and sections
+            document.querySelectorAll('.info-card, .step, .feature').forEach(el => {
+                el.style.transform = 'translateY(30px)';
+                el.style.opacity = '0';
+                el.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
